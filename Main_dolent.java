@@ -1,5 +1,6 @@
 package com.company;
 
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -10,19 +11,18 @@ import java.util.Random;
  * @index Se usa para elegir la palabra que usaremos en la base de datos paraules
  * @p contendra la palabra y la mostrara en formato escondido
  */
-
 public class Main {
 
     static protected String paraules[] = {"hola","programació","casa"};
     static protected int index;
-    static protected String p;
+    static protected String paraulaAmagada="";
+    static Comprobar_Letra comprobar_letra;
 
-
-	 /**
-     	  *
-     	  *
-     	  * @param args
-     	  */
+    /**
+     *Este main contiene el codigo para la ejecuccion del programa
+     *
+     * @param args
+     */
 
     public static void main(String[] args) {
         System.out.println("Comença el joc!");
@@ -30,46 +30,26 @@ public class Main {
         Random rand = new Random();
         index = rand.nextInt(3);
         for (int i=0; i<paraules[index].length(); i++) {
-            p += "_";
+            paraulaAmagada += "_";
         }
 
-        System.out.println(p);
+        System.out.println(paraulaAmagada);
 
         Scanner reader = new Scanner(System.in);
 
         int num_errors = 0;
 
-        while (!p.equals(paraules[index]) && num_errors < 5) {
-            if (!nova_lletra(reader.next().charAt(0))) {
+        comprobar_letra=new Comprobar_Letra(paraules[index],paraulaAmagada);
+
+        while (!paraulaAmagada.equals(paraules[index]) && num_errors < 5) {
+            if (!comprobar_letra.LetraEncontrada(reader.next().charAt(0))) {
                 num_errors++;
+                System.out.print("fallo");
             }
-            System.out.println(p);
+            comprobar_letra.PintarLetra();
         }
-   }
-
-    /**
-     * Este metodo busca si la letra elegida por el usuario esta en la palabra que buscamos
-     *
-     * @param nova es la letra que introduce el usuario para buscarla en la palabra
-     * @return devuelve true si encuentra la letra en la palabra o false si no la encuentra
-     */
-
-
-    static public boolean nova_lletra(char nova) {
-        boolean trobada = false;
-        String paraula_old = p;
-        p = "";
-        for (int i=0; i<paraules[index].length(); i++) {
-            if (paraules[index].charAt(i) == nova) {
-                p += paraules[index].charAt(i);
-                trobada = true;
-            }
-            else {
-                p += paraula_old.charAt(i);
-            }
-        }
-        return trobada;
     }
 
-}
 
+
+}
