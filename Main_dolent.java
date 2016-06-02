@@ -3,11 +3,26 @@ package com.company;
 import java.util.Scanner;
 import java.util.Random;
 
+/**
+ * Clase main contiene la ejecuccion de los metodos y funciones del programa
+ *
+ * @paraules Contiene las palabras que se cargaran en la base de datos del juego
+ * @index Se usa para elegir la palabra que usaremos en la base de datos paraules
+ * @p contendra la palabra y la mostrara en formato escondido
+ */
+
 public class Main {
 
     static protected String paraules[] = {"hola","programació","casa"};
     static protected int index;
     static protected String p;
+
+
+	 /**
+     	  *
+     	  *
+     	  * @param args
+     	  */
 
     public static void main(String[] args) {
         System.out.println("Comença el joc!");
@@ -31,6 +46,14 @@ public class Main {
             System.out.println(p);
         }
    }
+
+    /**
+     * Este metodo busca si la letra elegida por el usuario esta en la palabra que buscamos
+     *
+     * @param nova es la letra que introduce el usuario para buscarla en la palabra
+     * @return devuelve true si encuentra la letra en la palabra o false si no la encuentra
+     */
+
 
     static public boolean nova_lletra(char nova) {
         boolean trobada = false;
